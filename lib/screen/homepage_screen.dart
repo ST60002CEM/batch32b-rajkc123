@@ -7,7 +7,8 @@ class HomepageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('DET Ready'),
+        title: Text('Uplingoo'),
+        backgroundColor: Colors.amber,
         actions: [
           TextButton(
             onPressed: () {
@@ -30,7 +31,7 @@ class HomepageScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 20),
                   Text(
-                    'DETReady Practice',
+                    'Uplingoo Practice',
                     style: TextStyle(
                       fontSize: 36,
                       fontWeight: FontWeight.bold,
@@ -40,7 +41,7 @@ class HomepageScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 20),
                   Text(
-                    'DET Ready\'s Practice Platform',
+                    'Uplingoo\'s Practice Platform',
                     style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,

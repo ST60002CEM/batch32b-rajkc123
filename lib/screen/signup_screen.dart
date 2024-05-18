@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatelessWidget {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,26 +37,23 @@ class LoginScreen extends StatelessWidget {
                     color: Color(0xFFB68B4C),
                   ),
                 ),
-                SizedBox(height: 40),
-                const Text(
-                  'Login',
+                const SizedBox(height: 40),
+                Text(
+                  'Signup',
                   style: TextStyle(
                     fontSize: 24,
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
+                buildTextField(Icons.person, 'Username'),
+                const SizedBox(height: 20),
                 buildTextField(Icons.email, 'Email'),
                 SizedBox(height: 20),
                 buildTextField(Icons.lock, 'Password', obscureText: true),
-                SizedBox(height: 10),
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Forgot your password?',
-                    style: TextStyle(color: Colors.blue),
-                  ),
-                ),
+                SizedBox(height: 20),
+                buildTextField(Icons.lock, 'Confirm Password',
+                    obscureText: true),
                 SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {},
@@ -64,16 +61,16 @@ class LoginScreen extends StatelessWidget {
                     backgroundColor: Color(0xFFB68B4C),
                     padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   ),
-                  child: const Text('Log in'),
+                  child: Text('Sign Up'),
                 ),
                 SizedBox(height: 20),
-                Text('Don’t have an account?'),
+                Text('Already have an account?'),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/signup');
+                    Navigator.pushNamed(context, '/');
                   },
-                  child: const Text('Signup here.',
-                      style: TextStyle(color: Colors.blue)),
+                  child:
+                      Text('Login here.', style: TextStyle(color: Colors.blue)),
                 ),
               ],
             ),
