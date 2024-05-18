@@ -147,6 +147,13 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                           );
                         });
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text("Saved"),
+                          backgroundColor: Colors.blue,
+                          duration: Duration(seconds: 2),
+                          behavior: SnackBarBehavior.floating,
+                        ));
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -177,21 +184,4 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
-
-//   Widget buildTextField(IconData icon, String hintText,
-//       {bool obscureText = false}) {
-//     return TextField(
-//       obscureText: obscureText,
-//       decoration: InputDecoration(
-//         prefixIcon: Icon(icon, color: Color(0xFFB68B4C)),
-//         hintText: hintText,
-//         filled: true,
-//         fillColor: Colors.white,
-//         border: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(30),
-//           borderSide: BorderSide.none,
-//         ),
-//       ),
-//     );
-// }
 }
