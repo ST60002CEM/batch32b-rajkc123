@@ -1,3 +1,4 @@
+import 'package:finalproject/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -67,7 +68,11 @@ class SignupScreen extends StatelessWidget {
                 Text('Already have an account?'),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
+                    );
                   },
                   child:
                       Text('Login here.', style: TextStyle(color: Colors.blue)),

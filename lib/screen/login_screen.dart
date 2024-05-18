@@ -1,3 +1,4 @@
+import 'package:finalproject/screen/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -45,9 +46,9 @@ class LoginScreen extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 buildTextField(Icons.email, 'Email'),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 buildTextField(Icons.lock, 'Password', obscureText: true),
                 SizedBox(height: 10),
                 const Align(
@@ -70,7 +71,11 @@ class LoginScreen extends StatelessWidget {
                 Text('Don’t have an account?'),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/signup');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignupScreen()),
+                    );
                   },
                   child: const Text('Signup here.',
                       style: TextStyle(color: Colors.blue)),
