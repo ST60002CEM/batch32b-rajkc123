@@ -32,26 +32,11 @@ class _SignupScreenState extends State<SignupScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Image.asset(
-                  //   'assets/logo.png',
-                  //   height: 100,
-                  // ),
-                  SizedBox(height: 20),
-                  const Text(
-                    'Uplingoo',
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFFB68B4C),
-                    ),
+                  Image.asset(
+                    'assets/images/logo.png',
+                    height: 100,
                   ),
-                  const Text(
-                    'Upgrade your score',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFFB68B4C),
-                    ),
-                  ),
+                  const SizedBox(height: 20),
                   const SizedBox(height: 40),
                   const Text(
                     'Signup',
@@ -133,7 +118,6 @@ class _SignupScreenState extends State<SignupScreen> {
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.red))),
                   ),
-
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
@@ -149,7 +133,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         });
                         ScaffoldMessenger.of(context)
                             .showSnackBar(const SnackBar(
-                          content: Text("Saved"),
+                          content: Text("Sign up completed"),
                           backgroundColor: Colors.blue,
                           duration: Duration(seconds: 2),
                           behavior: SnackBarBehavior.floating,

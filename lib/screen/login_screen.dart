@@ -18,27 +18,11 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Image.asset(
-                //   'assets/logo.png',
-                //   height: 100,
-                // ),
+                Image.asset(
+                  'assets/images/logo.png',
+                  height: 150,
+                ),
                 SizedBox(height: 20),
-                const Text(
-                  'Uplingoo',
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFFB68B4C),
-                  ),
-                ),
-                const Text(
-                  'Upgrade your score',
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Color(0xFFB68B4C),
-                  ),
-                ),
-                SizedBox(height: 40),
                 const Text(
                   'Login',
                   style: TextStyle(

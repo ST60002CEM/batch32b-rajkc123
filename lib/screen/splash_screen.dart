@@ -1,39 +1,58 @@
+import 'dart:async';
+
+import 'package:finalproject/screen/homepage_screen.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Timer(const Duration(seconds: 5), () {
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const HomepageScreen()));
+    });
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Color(0xFFF7F2E9), // Background color similar to the image
-        child: const Column(
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Image.asset(
-            //   'assets/images/logo.png',
-            //   height: 100, // Adjust the height as necessary
-            // ),
-            SizedBox(height: 20),
-            Text(
+            const Text(
               'Uplingoo',
               style: TextStyle(
-                fontSize: 40,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: Color(0xFFB68B4C),
               ),
             ),
-            SizedBox(height: 10),
-            Text(
-              'Upgrade your score',
-              style: TextStyle(
-                fontSize: 16,
-                color: Color(0xFFB68B4C),
-              ),
+            const SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/logo.png',
+                  // put width and height based on screen size
+                  width: screenWidth * 0.8,
+                  height: screenHeight * 0.3,
+                ),
+              ],
             ),
+            const SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),

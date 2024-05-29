@@ -10,6 +10,7 @@ class HomepageScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Uplingoo'),
         backgroundColor: Colors.amber,
+        
         actions: [
           TextButton(
             onPressed: () {
