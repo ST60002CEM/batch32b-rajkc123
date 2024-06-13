@@ -1,15 +1,15 @@
+import 'package:finalproject/features/auth/presentation/view/login_view.dart';
 import 'package:finalproject/model/signup_model.dart';
-import 'package:finalproject/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class RegisterView extends StatefulWidget {
+  const RegisterView({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<RegisterView> createState() => _RegisterViewState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _RegisterViewState extends State<RegisterView> {
   List<SignupModel> signupList = [];
   SignupModel? signupModel;
   String? username;
@@ -154,7 +154,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const LoginScreen()),
+                            builder: (context) => const LoginView()),
                       );
                     },
                     child: const Text('Login here.',

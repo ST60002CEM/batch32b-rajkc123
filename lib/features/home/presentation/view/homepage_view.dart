@@ -1,4 +1,5 @@
-import 'package:finalproject/screen/signup_screen.dart';
+import 'package:finalproject/features/auth/presentation/view/register_view.dart';
+
 import 'package:flutter/material.dart';
 
 class HomepageScreen extends StatelessWidget {
@@ -10,13 +11,12 @@ class HomepageScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Uplingoo'),
         backgroundColor: Colors.amber,
-        
         actions: [
           TextButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SignupScreen()),
+                MaterialPageRoute(builder: (context) => const RegisterView()),
               );
               // Navigate to login/signup
             },
@@ -37,7 +37,7 @@ class HomepageScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     SizedBox(height: 20),
-                    Text(
+                    const Text(
                       'Uplingoo Practice',
                       style: TextStyle(
                         fontSize: 36,
