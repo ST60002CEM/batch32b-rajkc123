@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:finalproject/features/home/presentation/view/homepage_view.dart';
+import 'package:finalproject/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
@@ -14,8 +14,8 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     Timer(const Duration(seconds: 5), () {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const HomepageScreen()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomeView()));
     });
     // TODO: implement initState
     super.initState();

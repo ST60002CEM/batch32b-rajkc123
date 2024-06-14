@@ -6,7 +6,6 @@ class AppTheme {
 
   static getApplicationTheme(bool isDark) {
     return ThemeData(
-      
       // change the theme according to the user preference
       colorScheme: isDark
           ? const ColorScheme.dark(
@@ -22,7 +21,7 @@ class AppTheme {
       // Change app bar color
       appBarTheme: const AppBarTheme(
         elevation: 0,
-        backgroundColor: ThemeConstant.appBarColor,
+        backgroundColor: Color.fromARGB(255, 218, 198, 100),
         centerTitle: true,
         titleTextStyle: TextStyle(
           color: Colors.white,

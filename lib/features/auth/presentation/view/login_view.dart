@@ -1,94 +1,169 @@
-import 'package:finalproject/features/auth/presentation/view/register_view.dart';
+import 'package:finalproject/features/auth/presentation/viewmodel/auth_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginView extends StatefulWidget {
+class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  ConsumerState<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _LoginViewState extends ConsumerState<LoginView> {
+  final _formKey = GlobalKey<FormState>();
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool isObscure = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Color(0xFFF7F2E9),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 60.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/logo.png',
-                  height: 150,
-                ),
-                SizedBox(height: 20),
-                const Text(
-                  'Login',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
+      backgroundColor: const Color(0xFFF8F4EB),
+      body: SafeArea(
+        child: Form(
+          key: _formKey,
+          child: Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Image.asset(
+                    'assets/images/logo.png', // Replace with your logo asset
+                    height: 150,
                   ),
-                ),
-                const SizedBox(height: 20),
-                buildTextField(Icons.email, 'Email'),
-                const SizedBox(height: 20),
-                buildTextField(Icons.lock, 'Password', obscureText: true),
-                SizedBox(height: 10),
-                const Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'Forgot your password?',
-                    style: TextStyle(color: Colors.blue),
+                  const SizedBox(height: 16),
+                  const Text(
+                    'Upgrade your score',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'Brand Regular',
+                      color: Color(0xFF8E7F55),
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFFB68B4C),
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  const SizedBox(height: 32),
+                  TextFormField(
+                    key: const ValueKey('username'),
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      prefixIcon:
+                          const Icon(Icons.mail, color: Color(0xFF8E7F55)),
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none,
+                      ),
+                      labelText: 'Username',
+                      labelStyle: const TextStyle(color: Color(0xFF8E7F55)),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return 'Please enter username';
+                      }
+                      return null;
+                    },
                   ),
-                  child: const Text('Log in'),
-                ),
-                SizedBox(height: 20),
-                Text('Don’t have an account?'),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const RegisterView()),
-                    );
-                  },
-                  child: const Text('Signup here.',
-                      style: TextStyle(color: Colors.blue)),
-                ),
-              ],
+                  const SizedBox(height: 16),
+                  TextFormField(
+                    key: const ValueKey('password'),
+                    controller: _passwordController,
+                    obscureText: isObscure,
+                    decoration: InputDecoration(
+                      prefixIcon:
+                          const Icon(Icons.lock, color: Color(0xFF8E7F55)),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          isObscure ? Icons.visibility : Icons.visibility_off,
+                          color: Color(0xFF8E7F55),
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            isObscure = !isObscure;
+                          });
+                        },
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none,
+                      ),
+                      labelText: 'Password',
+                      labelStyle: const TextStyle(color: Color(0xFF8E7F55)),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter password';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        // Handle forgot password
+                      },
+                      child: const Text(
+                        'Forgot your password?',
+                        style: TextStyle(color: Color(0xFF0B84FF)),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF8E7F55),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        await ref
+                            .read(authViewModelProvider.notifier)
+                            .loginStudent(
+                              _usernameController.text,
+                              _passwordController.text,
+                            );
+                      }
+                    },
+                    child: const Text(
+                      'Log in',
+                      style: TextStyle(fontSize: 18, fontFamily: 'Brand Bold'),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Center(
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Don't have an account?",
+                          style: TextStyle(color: Color(0xFF8E7F55)),
+                        ),
+                        TextButton(
+                          key: const ValueKey('registerButton'),
+                          onPressed: () {
+                            ref
+                                .read(authViewModelProvider.notifier)
+                                .openRegisterView();
+                          },
+                          child: const Text(
+                            'Signup here.',
+                            style: TextStyle(color: Color(0xFF0B84FF)),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildTextField(IconData icon, String hintText,
-      {bool obscureText = false}) {
-    return TextField(
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        prefixIcon: Icon(icon, color: Color(0xFFB68B4C)),
-        hintText: hintText,
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
-          borderSide: BorderSide.none,
         ),
       ),
     );
