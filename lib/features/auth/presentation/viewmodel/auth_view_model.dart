@@ -8,7 +8,6 @@ import 'package:finalproject/features/auth/presentation/state/auth_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
 final authViewModelProvider = StateNotifierProvider<AuthViewModel, AuthState>(
   (ref) => AuthViewModel(
     ref.read(loginViewNavigatorProvider),
@@ -21,19 +20,6 @@ class AuthViewModel extends StateNotifier<AuthState> {
   final AuthUseCase authUseCase;
   final LoginViewNavigator navigator;
 
-  // Future<void> uploadImage(File? file) async {
-  //   state = state.copyWith(isLoading: true);
-  //   var data = await authUseCase.uploadProfilePicture(file!);
-  //   data.fold(
-  //     (l) {
-  //       state = state.copyWith(isLoading: false, error: l.error);
-  //     },
-  //     (imageName) {
-  //       state =
-  //           state.copyWith(isLoading: false, error: null, imageName: imageName);
-  //     },
-  //   );
-  // }
 
   Future<void> registerStudent(AuthEntity student) async {
     state = state.copyWith(isLoading: true);
@@ -53,7 +39,7 @@ class AuthViewModel extends StateNotifier<AuthState> {
     );
   }
 
-  Future<void> loginStudent(
+  loginStudent(
     String username,
     String password,
   ) async {
@@ -70,6 +56,8 @@ class AuthViewModel extends StateNotifier<AuthState> {
       },
     );
   }
+
+
 
   void openRegisterView() {
     navigator.openRegisterView();

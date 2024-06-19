@@ -29,8 +29,4 @@ class AuthLocalRepository implements IAuthRepository {
     return _authLocalDataSource.registerStudent(student);
   }
 
-  @override
-  Future<Either<Failure, String>> uploadProfilePicture(File file) async {
-    return const Right("");
-  }
 }
