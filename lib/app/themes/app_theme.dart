@@ -21,7 +21,7 @@ class AppTheme {
       // Change app bar color
       appBarTheme: const AppBarTheme(
         elevation: 0,
-        backgroundColor: Color.fromARGB(255, 218, 198, 100),
+        backgroundColor: Color.fromARGB(255, 204, 142, 35),
         centerTitle: true,
         titleTextStyle: TextStyle(
           color: Colors.white,
