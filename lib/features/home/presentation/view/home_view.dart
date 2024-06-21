@@ -71,7 +71,7 @@ class _HomeViewState extends State<HomeView> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Colors.grey, // Set the color for unselected items
+        unselectedItemColor: Colors.white, // Set the color for unselected items
         onTap: _onItemTapped,
       ),
     );

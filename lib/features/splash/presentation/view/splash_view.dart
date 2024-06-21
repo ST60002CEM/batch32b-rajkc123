@@ -29,24 +29,28 @@ class _SplashViewState extends State<SplashView> {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 12),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/logo.png',
-                  // put width and height based on screen size
-                  width: screenWidth * 0.8,
-                  height: screenHeight * 0.3,
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            const SizedBox(height: 20),
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // const SizedBox(height: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/logo.png',
+                    // put width and height based on screen size
+                    width: screenWidth * 0.8,
+                    height: screenHeight * 0.3,
+                  ),
+                  const CircularProgressIndicator(strokeWidth: 8.0),
+                  const SizedBox(height: 10),
+                ],
+              ),
+              const SizedBox(height: 20),
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
     );

@@ -5,9 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final loginViewNavigatorProvider = Provider((ref) => LoginViewNavigator());
 
-class LoginViewNavigator with RegisterViewRoute {
-  void openHomeView() {}
-}
+class LoginViewNavigator with RegisterViewRoute {}
 
 mixin LoginViewRoute {
   openLoginView() {

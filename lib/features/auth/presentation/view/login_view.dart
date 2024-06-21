@@ -123,14 +123,12 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       padding: const EdgeInsets.symmetric(vertical: 16),
                     ),
                     onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        await ref
-                            .read(authViewModelProvider.notifier)
-                            .loginStudent(
-                              _usernameController.text,
-                              _passwordController.text,
-                            );
-                      }
+                      await ref
+                          .read(authViewModelProvider.notifier)
+                          .loginStudent(
+                            _usernameController.text,
+                            _passwordController.text,
+                          );
                     },
                     child: const Text(
                       'Log in',
