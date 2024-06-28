@@ -1,9 +1,12 @@
+import 'package:finalproject/app/navigator/navigator.dart';
 import 'package:finalproject/core/common/my_snackbar.dart';
 import 'package:finalproject/features/auth/domain/entity/auth_entity.dart';
 import 'package:finalproject/features/auth/domain/usecases/auth_usecase.dart';
 import 'package:finalproject/features/auth/presentation/navigator/login_navigator.dart';
 import 'package:finalproject/features/auth/presentation/state/auth_state.dart';
+import 'package:finalproject/features/auth/presentation/view/register_view.dart';
 import 'package:finalproject/features/home/presentation/navigator/home_navigator.dart';
+import 'package:finalproject/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -56,10 +59,10 @@ class AuthViewModel extends StateNotifier<AuthState> {
   }
 
   void openRegisterView() {
-    navigator.openRegisterView();
+    NavigateRoute.pushRoute(const RegisterView());
   }
 
   void openHomeView() {
-    homeNavigator.openHomeView();
+    NavigateRoute.pushRoute(const HomeView());
   }
 }

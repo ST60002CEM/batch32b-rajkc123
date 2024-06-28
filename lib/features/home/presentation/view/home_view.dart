@@ -1,15 +1,17 @@
 import 'package:finalproject/features/auth/presentation/view/login_view.dart';
-import 'package:finalproject/features/auth/presentation/view/register_view.dart';
+import 'package:finalproject/features/home/presentation/navigator/home_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeView extends StatefulWidget {
+
+class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  ConsumerState<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _HomeViewState extends ConsumerState<HomeView> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
@@ -29,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Uplingoo'),
+        title: const Text('Uplingo'),
         backgroundColor: Colors.amber,
         actions: [
           TextButton(
@@ -38,7 +40,6 @@ class _HomeViewState extends State<HomeView> {
                 context,
                 MaterialPageRoute(builder: (context) => const LoginView()),
               );
-              // Navigate to login/signup
             },
             child: const Text(
               'Signup / Login',
@@ -71,18 +72,19 @@ class _HomeViewState extends State<HomeView> {
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Colors.white, // Set the color for unselected items
+        unselectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
     );
   }
 }
 
-class HomePageContent extends StatelessWidget {
+class HomePageContent extends ConsumerWidget {
   const HomePageContent({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final navigator = ref.watch(homeViewNavigatorProvider);
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -93,7 +95,7 @@ class HomePageContent extends StatelessWidget {
               children: [
                 const SizedBox(height: 20),
                 const Text(
-                  'Uplingoo Practice',
+                  'Uplingo Practice',
                   style: TextStyle(
                     fontSize: 36,
                     fontWeight: FontWeight.bold,
@@ -103,7 +105,7 @@ class HomePageContent extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  'Uplingoo\'s Practice Platform',
+                  'Uplingo\'s Practice Platform',
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -138,7 +140,7 @@ class HomePageContent extends StatelessWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue, // text color
+                    backgroundColor: Colors.blue,
                   ),
                   child: const Text('Get Started'),
                 ),
