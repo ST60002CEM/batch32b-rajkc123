@@ -105,6 +105,22 @@ class _PracticeTaskViewState extends ConsumerState<PracticeTaskView> {
                         icon: const Icon(Icons.arrow_forward),
                         label: const Text('Next Question'),
                       ),
+                      const SizedBox(height: 16),
+                      Wrap(
+                        spacing: 8.0,
+                        children: List<Widget>.generate(
+                          practiceState.tasks.length,
+                          (index) => ChoiceChip(
+                            label: Text('${index + 1}'),
+                            selected: practiceState.currentIndex == index,
+                            onSelected: (selected) {
+                              if (selected) {
+                                practiceNotifier.goToQuestion(index);
+                              }
+                            },
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

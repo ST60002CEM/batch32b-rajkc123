@@ -85,6 +85,17 @@ class PracticeStateNotifier extends StateNotifier<PracticeState> {
     }
   }
 
+  void goToQuestion(int index) {
+    if (state.tasks.isNotEmpty && index >= 0 && index < state.tasks.length) {
+      state = state.copyWith(
+        currentIndex: index,
+        submitted: false,
+        currentExplanation: null,
+        userAnswer: null,
+      );
+    }
+  }
+
   void submitAnswer(String answer) {
     if (state.tasks.isNotEmpty) {
       final currentTask = state.tasks[state.currentIndex];
