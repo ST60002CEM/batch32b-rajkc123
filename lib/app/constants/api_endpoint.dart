@@ -10,4 +10,9 @@ class ApiEndpoints {
   static const String register = "auth/register";
   static const String getAllStudent = "auth/getAllStudents";
   static const String currentUser = "auth/getMe";
+
+  // ====================== Practice Task Routes ======================
+  static const String getAllPracticeTasks = "practiceTasks";
+  // static const String createPracticeTask = "practiceTasks";
+  // static const String deletePracticeTask = "practiceTasks";
 }

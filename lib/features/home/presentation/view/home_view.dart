@@ -1,8 +1,8 @@
 import 'package:finalproject/features/auth/presentation/view/login_view.dart';
 import 'package:finalproject/features/home/presentation/navigator/home_navigator.dart';
+import 'package:finalproject/features/practice/presentation/view/practice_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -17,7 +17,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
   static const List<Widget> _widgetOptions = <Widget>[
     HomePageContent(),
     Text('Pricing Page Content'),
-    Text('Practice Page Content'),
+    PracticeTaskView(),
     Text('Settings Page Content'),
   ];
 
@@ -29,51 +29,59 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Uplingo'),
-        backgroundColor: Colors.amber,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginView()),
-              );
-            },
-            child: const Text(
-              'Signup / Login',
-              style: TextStyle(color: Colors.white),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Image.asset(
+            'assets/images/logo.png',
+            height: 50,
+          ),
+          centerTitle: false,
+          backgroundColor: Color.fromARGB(255, 173, 173, 172),
+          elevation: 10.0,
+          shadowColor: Colors.black,
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginView()),
+                );
+              },
+              child: const Text(
+                'Signup / Login',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
-          ),
-        ],
-      ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.attach_money),
-            label: 'Pricing',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Practice',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: 'Settings',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
-        unselectedItemColor: Colors.white,
-        onTap: _onItemTapped,
+          ],
+        ),
+        body: Center(
+          child: _widgetOptions.elementAt(_selectedIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.attach_money),
+              label: 'Pricing',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.school),
+              label: 'Practice',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          unselectedItemColor: Colors.white,
+          onTap: _onItemTapped,
+        ),
       ),
     );
   }
@@ -136,7 +144,7 @@ class HomePageContent extends ConsumerWidget {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
-                    // Navigate to Practice page
+                    navigator.openPracticeView();
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,

@@ -2,8 +2,6 @@ import 'package:finalproject/app/constants/hive_table_constant.dart';
 import 'package:finalproject/features/auth/data/model/auth_hive_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-
 import 'package:path_provider/path_provider.dart';
 
 final hiveServiceProvider = Provider((ref) => HiveService());
@@ -16,7 +14,6 @@ class HiveService {
     // Register Adapters
     Hive.registerAdapter(AuthHiveModelAdapter());
   }
-
 
   Future<void> addStudent(AuthHiveModel student) async {
     var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.studentBox);
