@@ -41,15 +41,19 @@ class AuthViewModel extends StateNotifier<AuthState> {
   }
 
   loginStudent(
-    String username,
-    String password,
+    String? username,
+    String? password,
   ) async {
+    if (username == null || password == null) {
+      showMySnackBar(message: 'Username or Password cannot be null', color: Colors.red);
+      return;
+    }
     state = state.copyWith(isLoading: true);
     var data = await authUseCase.loginStudent(username, password);
     data.fold(
       (failure) {
         state = state.copyWith(isLoading: false, error: failure.error);
-        showMySnackBar(message: failure.error, color: Colors.red);
+        showMySnackBar(message: failure.error ?? 'Login failed', color: Colors.red);
       },
       (success) {
         state = state.copyWith(isLoading: false, error: null);
