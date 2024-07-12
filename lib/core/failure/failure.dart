@@ -6,4 +6,6 @@ class Failure {
     required this.error,
     this.statusCode,
   });
+
+  get message => null;
 }

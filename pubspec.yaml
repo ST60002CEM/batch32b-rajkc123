@@ -55,10 +55,16 @@ dependencies:
   http: ^1.2.1
   image_picker: ^1.1.2
   freezed_annotation: ^2.4.1
+  test_cov_console: ^0.2.2
+  mockito: ^5.4.4
+  sensors_plus: ^5.0.1
+  vibration: ^1.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
