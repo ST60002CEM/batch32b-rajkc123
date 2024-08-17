@@ -1,5 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:finalproject/features/practice/presentation/state/practice_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final practiceViewModelProvider = Provider<PracticeViewModel>((ref) {
   return PracticeViewModel(ref.read(practiceStateProvider.notifier));

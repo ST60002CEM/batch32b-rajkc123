@@ -1,7 +1,10 @@
+import 'dart:ui'; // Import for blur effect
+
 import 'package:finalproject/features/auth/presentation/view/login_view.dart';
 import 'package:finalproject/features/home/data/model/shake_detector.dart';
 import 'package:finalproject/features/home/presentation/navigator/home_navigator.dart';
 import 'package:finalproject/features/practice/presentation/view/practice_view.dart';
+import 'package:finalproject/features/pricing/presentation/view/pricing_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:vibration/vibration.dart';
@@ -19,7 +22,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
 
   static const List<Widget> _widgetOptions = <Widget>[
     HomePageContent(),
-    Text('Pricing Page Content'),
+    PricingView(),
     PracticeTaskView(),
     Text('Settings Page Content'),
   ];
@@ -82,62 +85,85 @@ class _HomeViewState extends ConsumerState<HomeView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        color: Color.fromARGB(255, 43, 36, 46), // Set the background color here
-        child: Scaffold(
-          backgroundColor: Colors.transparent, // Make Scaffold transparent
-          appBar: AppBar(
-            title: Image.asset(
-              'assets/images/logo.png',
-              height: 50,
+      child: Stack(
+        children: [
+          Container(
+            // Background image
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                    'assets/images/background2.jpg'), // Replace with your background image asset
+                fit: BoxFit.cover,
+              ),
             ),
-            centerTitle: false,
-            backgroundColor: Color.fromARGB(255, 68, 117, 68),
-            elevation: 10.0,
-            shadowColor: Colors.black,
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginView()),
-                  );
-                },
-                child: const Text(
-                  'Signup / Login',
-                  style: TextStyle(color: Colors.white),
+          ),
+          // Apply blur effect using BackdropFilter
+          BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+            child: Container(
+              color: Colors.black
+                  .withOpacity(0.4), // Dark overlay to enhance contrast
+            ),
+          ),
+          Scaffold(
+            backgroundColor: Colors.transparent, // Make Scaffold transparent
+            appBar: AppBar(
+              title: Image.asset(
+                'assets/images/logo.png',
+                height: 55,
+              ),
+              centerTitle: false,
+              backgroundColor: Color.fromARGB(0, 106, 106, 53),
+              elevation: 20.0,
+              shadowColor: Colors.black,
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginView()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Color.fromARGB(255, 216, 140, 53),
+                  ),
+                  child: const Text(
+                    'Signup / Login',
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
+            body: Center(
+              child: _widgetOptions.elementAt(_selectedIndex),
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.attach_money),
+                  label: 'Pricing',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.school),
+                  label: 'Practice',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.settings),
+                  label: 'Settings',
+                ),
+              ],
+              currentIndex: _selectedIndex,
+              selectedItemColor: Colors.amber[800],
+              unselectedItemColor: Colors.white,
+              onTap: _onItemTapped,
+            ),
           ),
-          body: Center(
-            child: _widgetOptions.elementAt(_selectedIndex),
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.attach_money),
-                label: 'Pricing',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.school),
-                label: 'Practice',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.settings),
-                label: 'Settings',
-              ),
-            ],
-            currentIndex: _selectedIndex,
-            selectedItemColor: Colors.amber[800],
-            unselectedItemColor: Colors.white,
-            onTap: _onItemTapped,
-          ),
-        ),
+        ],
       ),
     );
   }
@@ -159,7 +185,7 @@ class HomePageContent extends ConsumerWidget {
                 const SizedBox(height: 20),
                 Image.asset(
                   'assets/images/logo.png', // Replace with your logo asset
-                  height: 150,
+                  height: 200,
                 ),
                 const Text(
                   'Uplingo\'s Practice Platform',
@@ -197,7 +223,7 @@ class HomePageContent extends ConsumerWidget {
                   },
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
-                    backgroundColor: Colors.blue,
+                    backgroundColor: Color.fromARGB(255, 216, 140, 53),
                   ),
                   child: const Text('Get Started'),
                 ),
